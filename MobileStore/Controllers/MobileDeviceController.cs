@@ -20,6 +20,10 @@ namespace MobileStore.Controllers
             _mobileDeviceService = new MobileDeviceService();
         }
 
+        /// <summary>
+        ///  Get all mobile devices
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         [Route("getAll")]
         [ResponseType(typeof(List<MobileDevice>))]
@@ -36,6 +40,11 @@ namespace MobileStore.Controllers
             }
         }
 
+        /// <summary>
+        /// Get mobile device by Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("{id}")]
         [ResponseType(typeof(MobileDevice))]
