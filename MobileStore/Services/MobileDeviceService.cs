@@ -9,15 +9,19 @@ namespace MobileStore.Services
 {
     public class MobileDeviceService
     {
-
+        
+        //Get all mobile devices
         public List<MobileDevice> GetAllMobileDevices()
         {
             using (var db = new MobileStoreDbContext())
             {
-                return db.MobileDevices.ToList();
+                var mobileList = db.MobileDevices.ToList();
+                mobileList.ForEach(t => t.Price = GetDiscountPrice(t.Price));
+                return mobileList;
             }
         }
 
+        //Get mobile device by Id
         public MobileDevice GetMobileDevice(int id)
         {
             using (var db = new MobileStoreDbContext())
