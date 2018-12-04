@@ -27,12 +27,13 @@ namespace MobileStore
 
         private void _initializeDatabase()
         {
+           
+                Database.SetInitializer(new MobileDeviceInitializer());
+                using (var db = new MobileStoreDbContext())
+                {
+                    db.Database.Initialize(false);
+                }
             
-            Database.SetInitializer(new MobileDeviceInitializer());
-            using (var db = new MobileStoreDbContext())
-            {
-                db.Database.Initialize(false);
-            }
         }
     }
 }

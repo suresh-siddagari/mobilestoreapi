@@ -22,8 +22,17 @@ namespace MobileStore.Services
         {
             using (var db = new MobileStoreDbContext())
             {
-                return db.MobileDevices.Find(id);
+                var mobileDevice= db.MobileDevices.Find(id);
+                mobileDevice.Price = GetDiscountPrice(mobileDevice.Price);
+                return mobileDevice;
             }
+        }
+
+        //Discount is 10% on the price
+        // And add 100 SEK as a standard fee
+        public double GetDiscountPrice(double price)
+        {
+            return price * 0.9+100;
         }
     }
 }
